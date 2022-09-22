@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteAppMind">
         <activity
-            android:name=".NoteListActivity"
+            android:name=".ui.NoteListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NoteEditActivity">
+            android:name=".ui.NoteEditActivity">
         </activity>
     </application>
 

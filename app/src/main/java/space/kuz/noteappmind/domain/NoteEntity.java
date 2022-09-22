@@ -11,6 +11,10 @@ public class NoteEntity {
         this.description = description;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

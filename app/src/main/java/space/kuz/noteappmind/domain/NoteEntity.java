@@ -1,4 +1,4 @@
-package space.kuz.noteappmind;
+package space.kuz.noteappmind.domain;
 
 public class NoteEntity {
     private int id;

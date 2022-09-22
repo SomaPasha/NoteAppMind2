@@ -1,4 +1,4 @@
-package space.kuz.noteappmind;
+package space.kuz.noteappmind.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import space.kuz.noteappmind.R;
+import space.kuz.noteappmind.ui.NoteEditActivity;
 
 public class NoteListActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -42,7 +45,7 @@ public class NoteListActivity extends AppCompatActivity {
     }
 
     public void OpenNoteScreen(){
-        Intent intent = new Intent(this,NoteEditActivity.class);
+        Intent intent = new Intent(this, NoteEditActivity.class);
         startActivity(intent);
     }
 }

@@ -22,6 +22,7 @@ public class NoteListActivity extends AppCompatActivity {
     private NotesRepo notesRepo = new NotesRepoImp();
     private NotesAdapter adapter = new NotesAdapter();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ public class NoteListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.new_note_menu:{
-              openNoteScreen();
+            //  openNoteScreen();
                 return true;
             }
             default:{
@@ -62,21 +63,21 @@ public class NoteListActivity extends AppCompatActivity {
 
     }
 
-    public void openNoteScreen(){
-        Intent intent = new Intent(this, NoteEditActivity.class);
-        startActivity(intent);
+    public void openNoteScreen( NoteEntity item){
+       NoteEditActivity.start(this,item);
     }
 
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.note_list_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        adapter.setData(notesRepo.getNotes());
         adapter.setOnItemClickListener(this::onItemClick);
+        adapter.setData(notesRepo.getNotes());
+
     }
 
-    private  void  onItemClick(NoteEntity note){
-        openNoteScreen();
+    private  void  onItemClick(NoteEntity item){
+        openNoteScreen(item);
     }
     private void fillRepoByTestValue() {
         notesRepo.addNote(new NoteEntity("dsdfdsfv","sdfsdfsdfwdfsddfsdfsd"));

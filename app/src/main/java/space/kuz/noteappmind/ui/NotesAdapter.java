@@ -28,16 +28,14 @@ public class NotesAdapter  extends RecyclerView.Adapter<NotesVh>  {
     @NonNull
     @Override
     public NotesVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_note,parent,false);
-        return new NotesVh(view);
+        return new NotesVh(parent,listener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NotesVh holder, int position) {
         NoteEntity note = getItem(position);
-        holder.itemView.setOnClickListener(v->listener.onItemClick(note));
-        holder.titleTextView.setText(note.getTitle());
-        holder.descriptionTextView.setText(note.getDescription());
+        holder.bind(note);
+
 
     }
 

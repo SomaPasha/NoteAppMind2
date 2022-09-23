@@ -1,6 +1,9 @@
 package space.kuz.noteappmind.domain;
 
-public class NoteEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class NoteEntity implements Parcelable {
     private int id;
     private String title;
     private String description;
@@ -12,6 +15,24 @@ public class NoteEntity {
         this.title = title;
         this.description = description;
     }
+
+    protected NoteEntity(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<NoteEntity> CREATOR = new Creator<NoteEntity>() {
+        @Override
+        public NoteEntity createFromParcel(Parcel in) {
+            return new NoteEntity(in);
+        }
+
+        @Override
+        public NoteEntity[] newArray(int size) {
+            return new NoteEntity[size];
+        }
+    };
 
     public void setId(int id) {
         this.id = id;
@@ -35,5 +56,17 @@ public class NoteEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(description);
     }
 }

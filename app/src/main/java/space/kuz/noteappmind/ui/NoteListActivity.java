@@ -71,12 +71,13 @@ public class NoteListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.note_list_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        adapter.setData(notesRepo.getNotes());
 
     }
 
     private void fillRepoByTestValue() {
         notesRepo.addNote(new NoteEntity("dsdfdsfv","sdfsdfsdfwdfsddfsdfsd"));
-        notesRepo.addNote(new NoteEntity("dsdfdsfv","sdfsdfsdfwdfsddfsdfsd"));
+        notesRepo.addNote(new NoteEntity("dsdfd;;sfv","sdfsdfsdfwd.fsddfsdfsd"));
         notesRepo.addNote(new NoteEntity("dsdfdsfv","sdfsdfsdfwdfsddfsdfsd"));
         notesRepo.addNote(new NoteEntity("dsdfdsfv","sdfsdfsdfwdfsddfsdfsd"));
         notesRepo.addNote(new NoteEntity("dsdfdsfv","sdfsdfsdfwdfsddfsdfsd"));

@@ -72,9 +72,12 @@ public class NoteListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.setData(notesRepo.getNotes());
-
+        adapter.setOnItemClickListener(this::onItemClick);
     }
 
+    private  void  onItemClick(NoteEntity note){
+        openNoteScreen();
+    }
     private void fillRepoByTestValue() {
         notesRepo.addNote(new NoteEntity("dsdfdsfv","sdfsdfsdfwdfsddfsdfsd"));
         notesRepo.addNote(new NoteEntity("dsdfd;;sfv","sdfsdfsdfwd.fsddfsdfsd"));

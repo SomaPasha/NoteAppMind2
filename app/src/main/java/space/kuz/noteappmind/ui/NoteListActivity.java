@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import space.kuz.noteappmind.R;
 import space.kuz.noteappmind.domain.NoteEntity;
@@ -16,8 +18,9 @@ import space.kuz.noteappmind.domain.NotesRepoImp;
 
 public class NoteListActivity extends AppCompatActivity {
     private Toolbar toolbar ;
-
+    private RecyclerView recyclerView;
     private NotesRepo notesRepo = new NotesRepoImp();
+    private NotesAdapter adapter = new NotesAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,11 @@ public class NoteListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.note_list_toolbar);
         setSupportActionBar(toolbar);
         fillRepoByTestValue();
+        initRecyclerView();
 
-    }
+
+        }
+
 
 
 
@@ -59,6 +65,13 @@ public class NoteListActivity extends AppCompatActivity {
     public void openNoteScreen(){
         Intent intent = new Intent(this, NoteEditActivity.class);
         startActivity(intent);
+    }
+
+    private void initRecyclerView() {
+        recyclerView = findViewById(R.id.note_list_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
     }
 
     private void fillRepoByTestValue() {

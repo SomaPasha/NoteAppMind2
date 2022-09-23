@@ -1,11 +1,14 @@
 package space.kuz.noteappmind.ui;
 
+import static space.kuz.noteappmind.ui.NoteEditActivity.KEY_LIST_EDIT;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,7 +56,8 @@ public class NoteListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.new_note_menu:{
-            //  openNoteScreen();
+                notesRepo.addNote(new NoteEntity("",""));
+             openNoteScreen(new NoteEntity(notesRepo.getNotes().size()-1,"",""));
                 return true;
             }
             default:{
@@ -64,7 +68,19 @@ public class NoteListActivity extends AppCompatActivity {
     }
 
     public void openNoteScreen( NoteEntity item){
-       NoteEditActivity.start(this,item);
+      Intent intent =  NoteEditActivity.start(this,item);
+       startActivityForResult(intent,1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (data == null) {
+            return;
+        }
+        NoteEntity noteEntity = data.getParcelableExtra(KEY_LIST_EDIT);
+        notesRepo.editNote(noteEntity.getId(), noteEntity);
+        adapter.setData(notesRepo.getNotes());
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void initRecyclerView() {

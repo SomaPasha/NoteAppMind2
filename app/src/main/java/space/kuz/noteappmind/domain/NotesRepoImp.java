@@ -37,7 +37,9 @@ public class NotesRepoImp implements NotesRepo{
     public boolean editNote(int id, NoteEntity note) {
         removeNote(id);
         note.setId(id);
-        repo.add(note);
+        repo.add(id-1,note);
         return true;
     }
+
+
 }

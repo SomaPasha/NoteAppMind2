@@ -27,6 +27,7 @@ public class NoteListActivity extends AppCompatActivity {
     }
 
     public void initToolBar(){
+
         toolbar = findViewById(R.id.note_list_toolbar);
         setSupportActionBar(toolbar);
         fillRepoByTestValue();
